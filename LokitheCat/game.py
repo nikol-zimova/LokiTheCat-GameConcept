@@ -9,14 +9,14 @@ SCRIPT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 start_time = 0
 player_life = 3
 
-def zivoty():
+def lives():
 
    if player_life == 1:
-       screen.blit(srdce1_surface,srdce1)
+       screen.blit(heart1_surface,heart1)
    elif player_life == 2:
-       screen.blit(srdce2_surface,srdce2)
+       screen.blit(heart2_surface,heart2)
    elif player_life == 3:
-       screen.blit(srdce3_surface,srdce3)
+       screen.blit(heart3_surface,heart3)
    
 
 
@@ -57,11 +57,11 @@ def enemy_movement(enemy_list):
         for enemy_rect in enemy_list:
             enemy_rect.x -= 5 
             if enemy_rect.bottom >= 300 and enemy_rect.bottom <= 350:
-                screen.blit(papuc1_surface,enemy_rect)
+                screen.blit(shoe1_surface,enemy_rect)
             elif enemy_rect.bottom >= 80 and enemy_rect.bottom <= 190:
-                screen.blit(papuc3_surface,enemy_rect)
+                screen.blit(shoe3_surface,enemy_rect)
             elif enemy_rect.bottom >= 360 and enemy_rect.bottom <=500:
-                screen.blit(papuc2_surface, enemy_rect) 
+                screen.blit(shoe2_surface, enemy_rect) 
         enemy_list = [enemy for enemy in enemy_list if enemy.x > -100]
         return enemy_list
     else:
@@ -73,7 +73,7 @@ def cracker_movement(cracker_list):
             crack_rect.x -= 5
             if crack_rect.bottom >= 100 and crack_rect.bottom <=800:
                 screen.blit(cracker_surface, crack_rect)
-        cracker_list = [ryba for ryba in cracker_list if ryba.x > -100]
+        cracker_list = [fish for fish in cracker_list if fish.x > -100]
         return cracker_list
     else:
         return[]    
@@ -95,15 +95,15 @@ def collisions(player, enemy):
 
     return True
 
-def cracker_collisions(player,ryba):
+def cracker_collisions(player,fish):
     global player_life
     current_time = int(pygame.time.get_ticks()/1000)-start_time
-    if ryba:
-        for crack_rect in ryba:
+    if fish:
+        for crack_rect in fish:
             if player.colliderect(crack_rect):
                 if player_life < 3:
                     player_life += 1
-                    ryba.remove(crack_rect)
+                    fish.remove(crack_rect)
                 elif player_life == 0:
                     save_high_score(current_time)
                     return False
@@ -173,35 +173,35 @@ font_start_rect = font_start.get_rect(center = (400, 150))
 
 
 #enemies
-papuc1_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "papuc.jpg")).convert_alpha()
-papuc1_rectangle = papuc1_surface.get_rect(midright = (600, 350))
+shoe1_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "shoe.jpg")).convert_alpha()
+shoe1_rectangle = shoe1_surface.get_rect(midright = (600, 350))
 
-papuc2_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "papuc2.png")).convert_alpha()
-papuc2_rectangle = papuc2_surface.get_rect(bottomright = (300, 150))
+shoe2_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "shoe2.png")).convert_alpha()
+shoe2_rectangle = shoe2_surface.get_rect(bottomright = (300, 150))
 
-papuc3_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "papuc3.png")).convert_alpha()
-papuc3_rectangle = papuc3_surface.get_rect(bottomright = (300, 150))
+shoe3_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "shoe3.png")).convert_alpha()
+shoe3_rectangle = shoe3_surface.get_rect(bottomright = (300, 150))
 
 #player
-player_walk1 = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "kocka1.png")).convert_alpha()
-player_walk2 = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "kocka2.png")).convert_alpha()
+player_walk1 = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "cat1.png")).convert_alpha()
+player_walk2 = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "cat2.png")).convert_alpha()
 player_walk = [player_walk1, player_walk2]
 player_index = 0
 player_surface = player_walk[player_index]
 
-player_jump = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "kocka3.png")).convert_alpha()
-player_down = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "kocka4.png")).convert_alpha()
+player_jump = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "cat3.png")).convert_alpha()
+player_down = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "cat4.png")).convert_alpha()
 player_rectangle = player_walk1.get_rect(midbottom = (70,390)) #takes surfaces and draws rectangle around it
 
-#player z
-srdce1_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "srdce1.png")).convert_alpha()
-srdce1 = srdce1_surface.get_rect(topright = (100,20))
+#player lives
+heart1_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "heart1.png")).convert_alpha()
+heart1 = heart1_surface.get_rect(topright = (100,20))
 
-srdce2_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "srdce2.png")).convert_alpha()
-srdce2 = srdce2_surface.get_rect(topright = (100,20))
+heart2_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "heart2.png")).convert_alpha()
+heart2 = heart2_surface.get_rect(topright = (100,20))
 
-srdce3_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "srdce3.png")).convert_alpha()
-srdce3 = srdce3_surface.get_rect(topright = (100,20))
+heart3_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "heart3.png")).convert_alpha()
+heart3 = heart3_surface.get_rect(topright = (100,20))
 
 #heal
 cracker_surface = pygame.image.load(os.path.join(SCRIPT_DIRECTORY, "heal.png")).convert_alpha()
@@ -259,24 +259,24 @@ while True:
         else: 
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
-                papuc1_rectangle.left = 800
-                papuc2_rectangle.left = 1500
-                papuc3_rectangle.left = 900
+                shoe1_rectangle.left = 800
+                shoe2_rectangle.left = 1500
+                shoe3_rectangle.left = 900
                 cracker_rect.left = 1100
                 start_time = int(pygame.time.get_ticks()/1000)
                 player_life = 3
 
-        if event.type == enemy_timer and game_active: #náhodné zobrazování nepřátel
-            enemy_type = randint(1,4) #vybírá čísla od 1-4
+        if event.type == enemy_timer and game_active: #random enemy spawn
+            enemy_type = randint(1,4) #pics numbers 1-4
           
             if enemy_type == 1: 
-                enemy_rectangle_list.append(papuc1_surface.get_rect(bottomright = (randint(900,1100), randint(300, 350))))
+                enemy_rectangle_list.append(shoe1_surface.get_rect(bottomright = (randint(900,1100), randint(300, 350))))
             elif enemy_type == 2:
-                enemy_rectangle_list.append(papuc3_surface.get_rect(bottomright = (randint(900,1100), randint(80,190))))
+                enemy_rectangle_list.append(shoe3_surface.get_rect(bottomright = (randint(900,1100), randint(80,190))))
             elif enemy_type == 3:
-                enemy_rectangle_list.append(papuc2_surface.get_rect(bottomright = (randint(900,1100), randint(360,500))))
+                enemy_rectangle_list.append(shoe2_surface.get_rect(bottomright = (randint(900,1100), randint(360,500))))
 
-        if event.type == cracker_timer and game_active: #kolize s crackerem
+        if event.type == cracker_timer and game_active: #cracker collision
             cracker_rect_list.append(cracker_surface.get_rect(bottomright = (randint(900,1100), randint(100,800))))
                 
             
@@ -294,11 +294,11 @@ while True:
         #draw all the screen elements
         screen.blit(ground_surface, (-30,290))
         display_score()
-        zivoty()
+        lives()
         
         #draw elements with positions
-        screen.blit(papuc1_surface, papuc1_rectangle)
-        screen.blit(papuc2_surface, papuc2_rectangle)
+        screen.blit(shoe1_surface, shoe1_rectangle)
+        screen.blit(shoe2_surface, shoe2_rectangle)
 
         screen.blit(cracker_surface,cracker_rect)
  
@@ -308,13 +308,13 @@ while True:
         player_rectangle.y += player_gravity
 
 
-        if player_rectangle.bottom >= 390: #nepropadne podlahou
+        if player_rectangle.bottom >= 390: #floor collision
             player_rectangle.bottom = 390
 
         player_animation()
 
           
-        # omwezení pohybu v rámci obrazovky
+        #screen boundaries
         if player_rectangle.x <= 0:
             player_rectangle.x = 0
         elif player_rectangle.x >= 700:
@@ -329,7 +329,7 @@ while True:
         screen.blit(player_surface, (player_rectangle))
         
         #enemy movement
-        enemy_rectangle_list = enemy_movement(enemy_rectangle_list) #přepisuje původní seznam
+        enemy_rectangle_list = enemy_movement(enemy_rectangle_list) 
 
         #cracker movement
         cracker_rect_list = cracker_movement(cracker_rect_list)
@@ -340,7 +340,7 @@ while True:
 
         game_active = cracker_collisions(player_rectangle, cracker_rect_list)
 
-        #kontrola životů
+        #game over
         if player_life <= 0:
             game_active = False
 
