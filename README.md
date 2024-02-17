@@ -18,7 +18,7 @@ Loki the Cat is a simple jumping game developed using the Pygame framework. The 
     Make sure you have Python and Pygame installed on your system.
     Clone this repository or download the ZIP file.
     Open a terminal/IDE of your choice and navigate to the project directory.
-    Run the game using the hra.py file.
+    Run the game using the game.py file.
     
 ## Controls
     Spacebar: Jump
