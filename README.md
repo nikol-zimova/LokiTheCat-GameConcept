@@ -11,7 +11,7 @@ Loki the Cat is a simple jumping game developed using the Pygame framework. The 
     Collectibles: Collect fish crackers to gain lost lives back. 
     Endless Mode: The game continues indefinitely until Loki loses all lives.
     High score: Highest score is saved and stored.
-    Simple Controls: Use the spacebar jump and A, S, D keys to move. 
+    Simple Controls: Use the spacebar to jump and A, S, D keys to move. 
 
 ## Installation
 
